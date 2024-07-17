@@ -40,7 +40,7 @@ tolerations:
   value: "true"
   effect: "NoSchedule" 
 ```
-dove: 
+dove i valori delle chiavi **operator** e **effect** seguono le rispettive descrizioni: 
 
 - **Equal**: in `value` dovrebbe essere inserito un valore uguale a quello del taint.
 - **NoSchedule**: nessun Pod senza una tolleranza corrispondente verrà pianificato sul nodo contaminato. Tuttavia i Pod attualmente in esecuzione sul nodo non vengono rimossi. <br>
