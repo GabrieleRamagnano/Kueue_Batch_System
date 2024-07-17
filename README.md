@@ -21,8 +21,8 @@ Per facilitare la gestione dell'intero sistema batch, si è scelto di raggruppar
 I passi dell'algoritmo per risolvere il problema sono i seguenti:
 
 - Creazione del sistema di code per lo scheduling dei Job (_resources/setup-kueue-system.sh_).
-- Creazione delle role per l'accesso alle due diverse tipologie di utenza al sistema (_set-role.sh_).
-- Creazione dei Job da ammettere nelle rispettive code (_run-job.sh_).
+- Creazione delle role per l'accesso alle due diverse tipologie di utenza al sistema (_resources/set-role.sh_).
+- Creazione dei Job da ammettere nelle rispettive code (_resources/run-job.sh_).
 
 
 ## Alcuni dettagli implementativi
@@ -31,7 +31,7 @@ I passi dell'algoritmo per risolvere il problema sono i seguenti:
 
 Kubernetes definisce diversi approcci affinché l’esecuzione dei Pod venga vincolata ad un insieme ristretto di nodi. Uno di questi fa uso delle proprità _Taint_ e _Toleration_. Taint viene definita come l'attinenza di un nodo a respingere un insieme di Pod.Dunque, per fare in modo che i Pod vengano ammessi all’interno dei nodi, vi si applicano su di essi delle tolerations. In breve: "_un Pod non può essere ammesso in un nodo se non **tollera** le sue **contaminazioni**_". <br>
 
-Nel file sorgente _job-team-gpu.yaml_, affinchè un carico di lavoro venga ammesso al "nodo-gpu", si è utilizzata la seguente toleration:
+Nel file sorgente _resources/job-team-gpu.yaml_, affinchè un carico di lavoro venga ammesso al "nodo-gpu", si è utilizzata la seguente toleration:
 
 ```
 tolerations:
@@ -39,7 +39,6 @@ tolerations:
   operator: "Equal"
   value: "true"
   effect: "NoSchedule" 
-
 ```
 dove: 
 
@@ -50,7 +49,6 @@ Ecco di seguito com'è stato contaminato il "nodo-gpu":
 
 ```
 kubectl taint nodes node-gpu key="nvidia.com/gpu":NoSchedule
-
 ```
 
 ### RBAC 
@@ -59,7 +57,7 @@ Il controllo degli accessi basato sui ruoli (RBAC) è un metodo per regolare l'a
 
 Ogni utente accede al cluster Kubernetes tramite il file di configurazione _kubeconfig_ . Una volta ammesso, l'oggetto RoleBinding (o ClusterRoleBinding) si occuperà di assegnarli la Role a lui designata, nella quale sono specificati i permessi di lettura e scrittura sulle risorse del cluster. Lo schema seguente riassume quanto descritto.
 
-<img src="image/role.jpg" alt="Role" width="500" height="400">
+<img src="image/role.jpg" alt="Role" width="350" height="400">
 
 ## Conclusione
 
