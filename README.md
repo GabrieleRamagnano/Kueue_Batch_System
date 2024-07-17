@@ -29,7 +29,7 @@ I passi dell'algoritmo per risolvere il problema sono i seguenti:
 
 ### Taint and Toleration
 
-Kubernetes definisce diversi approcci affinché l’esecuzione dei Pod venga vincolata ad un insieme ristretto di nodi. Uno di questi fa uso delle proprità _Taint_ e _Toleration_. Taint viene definita come l'attinenza di un nodo a respingere un insieme di Pod. Dunque, per fare in modo che i Pod vengano ammessi all’interno dei nodi, vi si applicano su di essi delle tolerations. In breve: "_un Pod non può essere ammesso in un nodo se non **tollera** le sue **contaminazioni**_". <br>
+Kubernetes definisce diversi approcci affinché l’esecuzione dei Pod venga vincolata ad un insieme ristretto di nodi. Uno di questi fa uso delle proprità _Taint_ e _Toleration_. Taint viene definita come l'attinenza di un nodo a respingere un insieme di Pod. Dunque, per fare in modo che i Pod vengano ammessi all’interno dei nodi, vi si applicano su di essi delle tolerations. In breve: "_un Pod non può essere ammesso in un nodo se non **tollera** le **contaminazioni**_ del nodo stesso". <br>
 
 Nel file sorgente _resources/job-team-gpu.yaml_, affinchè un carico di lavoro venga ammesso al "nodo-gpu", si è utilizzata la seguente toleration:
 
