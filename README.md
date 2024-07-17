@@ -57,7 +57,7 @@ Il controllo degli accessi basato sui ruoli (RBAC) è un metodo per regolare l'a
 
 Ogni utente accede al cluster Kubernetes tramite il file di configurazione _kubeconfig_ . Una volta ammesso, l'oggetto RoleBinding (o ClusterRoleBinding) si occuperà di assegnarli la Role a lui designata, nella quale sono specificati i permessi di lettura e scrittura sulle risorse del cluster. Lo schema seguente riassume quanto descritto.
 
-<img src="image/role.jpg" alt="Role" width="400" height="350">
+<img src="image/role.jpg" alt="Role" width="600" height="350">
 
 ## Conclusione
 
