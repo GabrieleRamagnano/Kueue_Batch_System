@@ -1,0 +1,18 @@
+#Set cluster queue for team-g. Cohort: team-cg
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ClusterQueue
+metadata:
+  name: team-g-cq
+spec:
+  namespaceSelector: {} # Available to all namespaces
+  cohort: "team-cg"
+  queueingStrategy: StrictFIFO # Workloads are ordered first by priority
+  resourceGroups:
+  - coveredResources: ["nvidia.com/gpu", "memory"]
+    flavors:
+    - name: "default-flavor"
+      resources:
+      - name: "nvidia.com/gpu"
+        nominalQuota: 1
+      - name: "memory"
+        nominalQuota: 3Gi

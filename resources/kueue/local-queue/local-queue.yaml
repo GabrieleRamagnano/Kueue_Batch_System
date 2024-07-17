@@ -1,0 +1,15 @@
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: team-c # LocalQueue under team-c namespace
+  name: lq-team-c
+spec:
+  clusterQueue: team-c-cq # Point to the ClusterQueue
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: team-g # LocalQueue under team-g namespace
+  name: lq-team-g
+spec:
+  clusterQueue: team-g-cq # Point to the ClusterQueue

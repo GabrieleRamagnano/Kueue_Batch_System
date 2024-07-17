@@ -1,0 +1,49 @@
+#Set Job: team-g, lower priority
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: team-g # Job under team-g namespace
+  generateName: job-tensorflow-gpu-
+  labels:
+    kueue.x-k8s.io/queue-name: lq-team-g # Point to the LocalrQueue
+    kueue.x-k8s.io/priority-class: lower-priority
+spec:
+  suspend: true   # Set to true to allow Kueue to control the Job when it starts
+  backoffLimit: 1 # Retry the execution of the Pods until a specified number of them successfully terminate
+  activeDeadlineSeconds: 100 # A way to terminate the Job if it fails to finish the task
+  template:
+    spec:
+      containers:
+      - name: job-tensorflow
+        image: tensorflow/tensorflow:latest
+        imagePullPolicy: Always
+        args: ["10s"] # Sleep for 10 seconds
+        command: ["python", "-c"]
+        args:
+        - |
+          import tensorflow as tf
+          @tf.function
+          def fibonacci(n):
+            ta = tf.TensorArray(tf.float32, size=0, dynamic_size=True)
+            ta = ta.unstack([0., 1.]) 
+         
+            for i in range(2, n):
+              ta = ta.write(i, ta.read(i - 1) + ta.read(i - 2))
+
+            return ta.stack()
+            
+          print(fibonacci(7))
+        resources:
+          requests:
+            nvidia.com/gpu: "1"
+            memory: "290Mi"
+          limits:
+            nvidia.com/gpu: "1"
+            memory: "300Mi"
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      restartPolicy: Never
+

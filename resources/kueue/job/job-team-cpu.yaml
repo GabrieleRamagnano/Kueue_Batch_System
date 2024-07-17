@@ -1,0 +1,33 @@
+#Set Job: team-c, higher priority
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: team-c # Job under team-c namespace
+  generateName: priority-job-cpu-
+  labels:
+    kueue.x-k8s.io/queue-name: lq-team-c # Point to the LocalQueue
+    kueue.x-k8s.io/priority-class: higher-priority
+spec:
+  parallelism: 1
+  completions: 1
+  suspend: true   # Set to true to allow Kueue to control the Job when it starts
+  backoffLimit: 0 # Retry the execution of the Pods until a specified number of them successfully terminate
+  activeDeadlineSeconds: 100  # A way to terminate the Job if it fails to finish the task
+  template:
+    spec:    
+      containers:
+      - name: job-cpu
+        image: busybox
+        imagePullPolicy: Always
+        args: ["10s"] # Sleep for 10 seconds
+        command: ['echo']
+        args:
+          - 'I want my cpu, please'
+        resources:
+          requests:
+            cpu: "1m"
+            memory: "6Mi"
+          limits:
+            cpu: "5m"
+            memory: "10Mi"
+      restartPolicy: Never
