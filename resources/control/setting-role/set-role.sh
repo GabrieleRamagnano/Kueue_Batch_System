@@ -21,7 +21,7 @@ cp $HOME/resources/role/template/certificate-gustavo.yaml \
 export CSR_BASE64=$(cat $HOME/resources/role/chiara-user/chiara.csr | base64 | tr -d "\n" )
 export CSR_BASE64=$(cat $HOME/resources/role/gustavo-user/gustavo.csr | base64 | tr -d "\n" )
 
-#note: It's neccessary to be install yq tool
+#note: it's neccessary to be install yq tool
 yq eval --inplace '.spec.request = strenv(CSR_BASE64)' \
    $HOME/resources/role/gustavo-user/certificate-gustavo.yaml
 
