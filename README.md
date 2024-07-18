@@ -51,13 +51,25 @@ Ecco di seguito com'è stato contaminato il "nodo-gpu":
 kubectl taint nodes node-gpu key="nvidia.com/gpu":NoSchedule
 ```
 
-### RBAC 
+### RBAC...
 
 Il controllo degli accessi basato sui ruoli (RBAC) è un metodo per regolare l'accesso al computer o alle risorse di rete in base ai ruoli dei singoli utenti all'interno dell'organizzazione. L'API RBAC dichiara quattro tipi di oggetti Kubernetes: **Role**, **ClusterRole**, **RoleBinding** e **ClusterRoleBinding**. Puoi descrivere o modificare gli oggetti RBAC utilizzando strumenti come kubectl, proprio come qualsiasi altro oggetto Kubernetes. Nota: in Kueue vengono utilizzate delle Role _predefinite_. <br>
 
 Ogni utente accede al cluster Kubernetes tramite il file di configurazione _kubeconfig_ . Una volta ammesso, l'oggetto RoleBinding (o ClusterRoleBinding) si occuperà di assegnarli la Role a lui designata, nella quale sono specificati i permessi di lettura e scrittura sulle risorse del cluster. Lo schema seguente riassume quanto descritto.
 
 <img src="image/role.jpg" alt="Role" width="650" height="325">
+
+### ...e Workload Priority Class
+
+Una **WorkloadPriorityClass** ti consente di controllare la priorità del carico di lavoro senza influenzare la priorità del pod. Questa funzionalità è utile per questi casi:
+
+- si desidera dare la priorità ai carichi di lavoro che rimangono inattivi per una durata specifica;
+- si desidera impostare una priorità più bassa per i carichi di lavoro di sviluppo e una priorità più alta per
+carichi di lavoro di produzione.
+
+Nella figura qui sotto si espone uno schema riassuntivo dell'intera architettura del _batch system_.
+
+<img src="image/archi.jpg" alt="Arc" width="650" height="325">
 
 ## Conclusione
 
