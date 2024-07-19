@@ -55,7 +55,7 @@ kubectl taint nodes node-gpu key="nvidia.com/gpu":NoSchedule
 
 Il controllo degli accessi basato sui ruoli (RBAC) è un metodo per regolare l'accesso al computer o alle risorse di rete in base ai ruoli dei singoli utenti all'interno dell'organizzazione. L'API RBAC dichiara quattro tipi di oggetti Kubernetes: **Role**, **ClusterRole**, **RoleBinding** e **ClusterRoleBinding**. Puoi descrivere o modificare gli oggetti RBAC utilizzando strumenti come kubectl, proprio come qualsiasi altro oggetto Kubernetes. Nota: in Kueue vengono utilizzate delle Role _predefinite_. <br>
 
-Ogni utente accede al cluster Kubernetes tramite il file di configurazione _kubeconfig_ . Una volta ammesso, l'oggetto RoleBinding (o ClusterRoleBinding) si occuperà di assegnarli la Role a lui designata, nella quale sono specificati i permessi di lettura e scrittura sulle risorse del cluster. Lo schema seguente riassume quanto descritto.
+Ogni utente accede al cluster Kubernetes tramite il file di configurazione _kubeconfig_ . Una volta ammesso, l'oggetto RoleBinding (o ClusterRoleBinding) si occuperà di assegnargli la Role a lui designata, nella quale sono specificati i permessi di lettura e scrittura sulle risorse del cluster. Lo schema seguente riassume quanto descritto.
 
 <img src="image/role_ii.jpg" alt="Role" width="650" height="325">
 
