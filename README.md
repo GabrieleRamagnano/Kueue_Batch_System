@@ -73,7 +73,7 @@ Nella figura qui sotto si espone uno schema riassuntivo dell'intera architettura
 
 ## Conclusione
 
-Il software sviluppato funziona correttamente ed è stato testato su due differenti tipi di cluster Kubernetes: su un Cloud Provider pubblico e Docker-in-Docker. La versione di Kueue utilizzata è la `v0.6.2`. 
+Il software sviluppato funziona correttamente ed è stato testato su due differenti tipi di cluster Kubernetes: su un Community Cloud Provider e Docker-in-Docker. La versione di Kueue utilizzata è la `v0.6.2`. 
 
 
 
