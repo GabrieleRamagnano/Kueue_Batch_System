@@ -13,9 +13,9 @@ openssl req -new -key $HOME/resources/role/chiara-user/gustavo.key -out  \
         $HOME/resources/role/gustavo-user/gustavo.csr -subj "/CN=gustavo"
 
 #create certificate signing request
-cp $HOME/resources/role/template/certificate-chiara.yaml \
+cp $HOME/resources/role/template/certificate.yaml \
    $HOME/resources/role/chiara-user/certificate-chiara.yaml
-cp $HOME/resources/role/template/certificate-gustavo.yaml \
+cp $HOME/resources/role/template/certificate.yaml \
    $HOME/resources/role/gustavo-user/certificate-gustavo.yaml
 
 export CSR_BASE64=$(cat $HOME/resources/role/chiara-user/chiara.csr | base64 | tr -d "\n" )
